@@ -1,10 +1,11 @@
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var extractPlugin = new ExtractTextPlugin({
-   filename: 'main.css'
+const extractPlugin = new ExtractTextPlugin({
+    filename: 'main.css'
 });
 
 module.exports = {
@@ -27,6 +28,7 @@ module.exports = {
                     }
                 ]
             },
+            { test: /\.css$/, loader: 'style-loader!css-loader' },
             {
                 test: /\.scss$/,
                 use: extractPlugin.extract({
@@ -53,6 +55,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            Popper: ['popper.js', 'default'],
+        }),
         extractPlugin,
         new HtmlWebpackPlugin({
             template: 'src/index.html'

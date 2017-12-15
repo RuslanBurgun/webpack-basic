@@ -1,15 +1,8 @@
-@import "colors";
-
-#randomInt {
-  background-color: $main;
-  border: 1px solid black;
-  color: white;
-  padding: 5px;
-}
-
-#randomRange {
-  background-color: $secondary;
-  border: 1px solid black;
-  color: white;
-  padding: 5px;
-}
+@import "var/colors";
+@import "var/_global.scss";
+@import "parent/reset";
+@import "parent/global";
+@import "components/nav";
+@import "components/header";
+@import "components/section-main";
+@import "components/footer";
